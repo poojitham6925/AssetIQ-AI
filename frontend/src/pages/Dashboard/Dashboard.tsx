@@ -1,32 +1,76 @@
+import {
+  Package,
+  ShieldCheck,
+  TriangleAlert,
+  QrCode,
+} from "lucide-react";
+
 import DashboardLayout from "../../components/dashboard/DashboardLayout";
-import StatCard from "../../components/dashboard/StatCard";
-import RecentActivity from "../../components/dashboard/RecentActivity";
-import AIInsights from "../../components/dashboard/AIInsights";
 import Analytics from "../../components/dashboard/Analytics";
+import AIInsights from "../../components/dashboard/AIInsights";
+import RecentActivity from "../../components/dashboard/RecentActivity";
+import StatCard from "../../components/dashboard/StatCard";
 
 export default function Dashboard() {
   return (
     <DashboardLayout>
-      <h1 className="text-3xl font-bold mb-8">
-        Dashboard
+
+      <h1 className="mb-8 text-3xl font-bold text-white">
+        Dashboard Overview
       </h1>
 
-      {/* Statistics Cards */}
-      <div className="grid md:grid-cols-4 gap-6">
-        <StatCard title="Assets" value="1,240" />
-        <StatCard title="Active" value="1,187" />
-        <StatCard title="Maintenance" value="38" />
-        <StatCard title="Alerts" value="15" />
+      {/* KPI Cards */}
+
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+
+        <StatCard
+          title="Total Assets"
+          value="1,240"
+          icon={Package}
+          color="bg-indigo-600"
+        />
+
+        <StatCard
+          title="Healthy Assets"
+          value="97%"
+          icon={ShieldCheck}
+          color="bg-emerald-600"
+        />
+
+        <StatCard
+          title="Critical Alerts"
+          value="15"
+          icon={TriangleAlert}
+          color="bg-rose-600"
+        />
+
+        <StatCard
+          title="QR Scans"
+          value="3,812"
+          icon={QrCode}
+          color="bg-amber-600"
+        />
+
       </div>
 
-      {/* Recent Activity + AI Insights */}
-      <div className="grid lg:grid-cols-2 gap-6 mt-8">
-        <RecentActivity />
+      {/* Charts */}
+
+      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+
+        <Analytics />
+
         <AIInsights />
+
       </div>
 
-      {/* Analytics Charts */}
-      <Analytics />
+      {/* Recent Activity */}
+
+      <div className="mt-8">
+
+        <RecentActivity />
+
+      </div>
+
     </DashboardLayout>
   );
 }

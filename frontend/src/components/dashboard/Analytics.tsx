@@ -1,25 +1,14 @@
 import {
-  PieChart,
-  Pie,
-  Cell,
   ResponsiveContainer,
-  LineChart,
-  Line,
-  CartesianGrid,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   Tooltip,
+  CartesianGrid,
 } from "recharts";
 
-const pieData = [
-  { name: "Laptops", value: 420 },
-  { name: "Desktops", value: 180 },
-  { name: "Printers", value: 90 },
-  { name: "Monitors", value: 260 },
-  { name: "Others", value: 140 },
-];
-
-const lineData = [
+const data = [
   { month: "Jan", assets: 120 },
   { month: "Feb", assets: 180 },
   { month: "Mar", assets: 250 },
@@ -28,64 +17,157 @@ const lineData = [
   { month: "Jun", assets: 520 },
 ];
 
-const COLORS = [
-  "#2563eb",
-  "#10b981",
-  "#f59e0b",
-  "#ef4444",
-  "#8b5cf6",
-];
-
 export default function Analytics() {
   return (
-    <div className="grid lg:grid-cols-2 gap-6 mt-8">
-      {/* Pie Chart */}
-      <div className="bg-white rounded-xl shadow p-6">
-        <h2 className="text-xl font-bold mb-6">
-          Asset Categories
-        </h2>
+    <div className="rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-7 shadow-lg">
 
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={pieData}
-              dataKey="value"
-              outerRadius={100}
-              label
-            >
-              {pieData.map((_, index) => (
-                <Cell
-                  key={index}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
+      {/* Header */}
+
+      <div className="mb-8 flex items-center justify-between">
+
+        <div>
+
+          <h2 className="text-2xl font-bold text-white">
+            Asset Analytics
+          </h2>
+
+          <p className="mt-1 text-sm text-zinc-500">
+            Monthly asset growth and activity
+          </p>
+
+        </div>
+
+        <div className="flex gap-2">
+
+          <button className="rounded-lg bg-indigo-600 px-4 py-2 text-sm text-white">
+            Month
+          </button>
+
+          <button className="rounded-lg bg-zinc-800 px-4 py-2 text-sm text-zinc-400 hover:bg-zinc-700">
+            Year
+          </button>
+
+        </div>
+
       </div>
 
-      {/* Line Chart */}
-      <div className="bg-white rounded-xl shadow p-6">
-        <h2 className="text-xl font-bold mb-6">
-          Monthly Asset Growth
-        </h2>
+      {/* Summary */}
 
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={lineData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-            <Line
+      <div className="mb-8 grid grid-cols-3 gap-4">
+
+        <div className="rounded-2xl bg-zinc-800 p-4">
+
+          <p className="text-sm text-zinc-500">
+            Total Assets
+          </p>
+
+          <h3 className="mt-2 text-2xl font-bold text-white">
+            1,240
+          </h3>
+
+        </div>
+
+        <div className="rounded-2xl bg-zinc-800 p-4">
+
+          <p className="text-sm text-zinc-500">
+            Growth
+          </p>
+
+          <h3 className="mt-2 text-2xl font-bold text-emerald-400">
+            +18%
+          </h3>
+
+        </div>
+
+        <div className="rounded-2xl bg-zinc-800 p-4">
+
+          <p className="text-sm text-zinc-500">
+            Active
+          </p>
+
+          <h3 className="mt-2 text-2xl font-bold text-indigo-400">
+            97%
+          </h3>
+
+        </div>
+
+      </div>
+
+      {/* Chart */}
+
+      <div className="h-80">
+
+        <ResponsiveContainer width="100%" height="100%">
+
+          <AreaChart data={data}>
+
+            <defs>
+
+              <linearGradient
+                id="assetGradient"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+
+                <stop
+                  offset="5%"
+                  stopColor="#6366f1"
+                  stopOpacity={0.7}
+                />
+
+                <stop
+                  offset="95%"
+                  stopColor="#6366f1"
+                  stopOpacity={0}
+                />
+
+              </linearGradient>
+
+            </defs>
+
+            <CartesianGrid
+              stroke="#27272a"
+              strokeDasharray="5 5"
+            />
+
+            <XAxis
+              dataKey="month"
+              tick={{ fill: "#a1a1aa" }}
+              axisLine={false}
+              tickLine={false}
+            />
+
+            <YAxis
+              tick={{ fill: "#a1a1aa" }}
+              axisLine={false}
+              tickLine={false}
+            />
+
+            <Tooltip
+              contentStyle={{
+                background: "#18181b",
+                border: "1px solid #3f3f46",
+                borderRadius: 12,
+                color: "#fff",
+              }}
+            />
+
+            <Area
               type="monotone"
               dataKey="assets"
-              stroke="#2563eb"
-              strokeWidth={3}
+              stroke="#6366f1"
+              strokeWidth={4}
+              fill="url(#assetGradient)"
             />
-          </LineChart>
+
+          </AreaChart>
+
         </ResponsiveContainer>
+
       </div>
+
     </div>
   );
 }
