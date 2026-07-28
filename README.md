@@ -116,10 +116,6 @@ npm run dev
 
 **Poojitha M**
 
-BE Artificial Intelligence & Machine Learning
-
-Atria Institute of Technology
-
 GitHub:
 https://github.com/poojitham6925
 
