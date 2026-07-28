@@ -1,75 +1,130 @@
-# React + TypeScript + Vite
+# 🚀 AssetIQ AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> AI-Powered Enterprise Asset Management Platform
 
-Currently, two official plugins are available:
+AssetIQ AI is a modern full-stack web application designed to simplify enterprise asset management through Artificial Intelligence, QR code tracking, analytics, and predictive maintenance.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📦 Asset Inventory Management
+- 🔍 QR Code Asset Tracking
+- 🤖 AI Maintenance Insights
+- 📊 Interactive Analytics Dashboard
+- 📈 Asset Performance Monitoring
+- 🔒 Secure Enterprise Dashboard
+- ⚡ Modern Responsive UI
+- 🌙 Dark Mode Design
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠 Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Frontend
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Lucide React
+- Recharts
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Backend (Upcoming)
 
-```
+- FastAPI
+- Python
+- MongoDB
+- JWT Authentication
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### AI
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Predictive Maintenance
+- Asset Health Analysis
+- AI Recommendations
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 📂 Project Structure
 
 ```
+AssetIQ-AI/
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── README.md
+└── .gitignore
+```
+
+---
+
+## 📸 Screenshots
+
+> Screenshots will be added after the UI redesign.
+
+---
+
+## 🚀 Getting Started
+
+### Clone Repository
+
+```bash
+git clone https://github.com/poojitham6925/AssetIQ-AI.git
+```
+
+### Navigate
+
+```bash
+cd AssetIQ-AI/frontend
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Run
+
+```bash
+npm run dev
+```
+
+---
+
+## 🎯 Roadmap
+
+- [x] Landing Page
+- [x] Dashboard UI
+- [x] Assets Module
+- [x] Analytics Dashboard
+- [x] AI Insights
+- [ ] Authentication
+- [ ] QR Generator
+- [ ] FastAPI Backend
+- [ ] MongoDB Integration
+- [ ] AI Prediction Engine
+- [ ] Deployment
+
+---
+
+## 👩‍💻 Author
+
+**Poojitha M**
+
+BE Artificial Intelligence & Machine Learning
+
+Atria Institute of Technology
+
+GitHub:
+https://github.com/poojitham6925
+
+---
+
+## ⭐ Support
+
+If you like this project, consider giving it a ⭐ on GitHub.
