@@ -1,79 +1,80 @@
 import { Cpu, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 
+const navItems = [
+  { name: "Home", path: "/" },
+  { name: "Features", path: "/features" },
+  { name: "Dashboard", path: "/dashboard" },
+  { name: "Analytics", path: "/analytics" },
+  { name: "AI", path: "/ai" },
+  { name: "Contact", path: "/contact" },
+];
+
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 z-50 w-full border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-zinc-950/75 backdrop-blur-2xl">
+      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 lg:px-10">
 
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600">
+
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-600 shadow-lg shadow-indigo-500/20">
+
             <Cpu size={20} className="text-white" />
+
           </div>
 
           <div>
-            <h1 className="text-lg font-bold text-white">
+
+            <h1 className="text-lg font-bold tracking-tight text-white">
               AssetIQ AI
             </h1>
 
             <p className="text-xs text-zinc-500">
-              Intelligent Asset Platform
+              Enterprise Asset Platform
             </p>
+
           </div>
+
         </Link>
 
         {/* Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden items-center gap-8 lg:flex">
 
-          <Link to="/" className="text-zinc-400 hover:text-white transition">
-            Home
-          </Link>
-
-          <Link to="/features" className="text-zinc-400 hover:text-white transition">
-            Features
-          </Link>
-
-          <Link to="/dashboard" className="text-zinc-400 hover:text-white transition">
-            Dashboard
-          </Link>
-
-          <Link to="/analytics" className="text-zinc-400 hover:text-white transition">
-            Analytics
-          </Link>
-
-          <Link to="/ai" className="text-zinc-400 hover:text-white transition">
-            AI
-          </Link>
-
-          <Link to="/contact" className="text-zinc-400 hover:text-white transition">
-            Contact
-          </Link>
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              to={item.path}
+              className="relative text-sm font-medium text-zinc-400 transition duration-300 hover:text-white after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-500 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              {item.name}
+            </Link>
+          ))}
 
         </nav>
 
-        {/* Right Side */}
-        <div className="hidden lg:flex items-center gap-4">
+        {/* Right */}
+        <div className="hidden items-center gap-4 lg:flex">
 
           <Link
             to="/login"
-            className="text-zinc-400 hover:text-white transition"
+            className="text-sm font-medium text-zinc-400 transition hover:text-white"
           >
             Login
           </Link>
 
           <Link
             to="/register"
-            className="rounded-xl bg-indigo-600 px-5 py-2 text-white font-medium hover:bg-indigo-500 transition"
+            className="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:-translate-y-0.5 hover:bg-indigo-500"
           >
             Get Started
           </Link>
 
         </div>
 
-        {/* Mobile Menu */}
-        <button className="lg:hidden text-white">
-          <Menu size={24} />
+        {/* Mobile */}
+        <button className="rounded-xl border border-zinc-800 p-2 text-zinc-300 transition hover:bg-zinc-900 lg:hidden">
+          <Menu size={20} />
         </button>
 
       </div>

@@ -1,7 +1,9 @@
 import Navbar from "../../components/layout/Navbar";
 import Hero from "../../components/landing/Hero";
 import Stats from "../../components/landing/Stats";
-import Features from "../../components/landing/Features";
+import HowItWorks from "../../components/landing/HowItWorks";
+import DashboardPreview from "../../components/landing/DashboardPreview";
+import WhyChoose from "../../components/landing/WhyChoose";
 import CTA from "../../components/landing/CTA";
 import Footer from "../../components/landing/Footer";
 
@@ -13,7 +15,9 @@ export default function Landing() {
       <main className="pt-20">
         <Hero />
         <Stats />
-        <Features />
+        <HowItWorks />
+        <DashboardPreview />
+        <WhyChoose />
         <CTA />
       </main>
 

@@ -3,17 +3,19 @@ import {
   PlayCircle,
   ShieldCheck,
   Sparkles,
+  Activity,
+  QrCode,
 } from "lucide-react";
-
-import dashboardImg from "../../assets/dashboard.png";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-zinc-950 py-24">
+    <section className="relative overflow-hidden bg-zinc-950 py-32">
 
-      <div className="absolute left-1/2 top-40 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-[140px]" />
+      {/* Background Glow */}
 
-      <div className="relative mx-auto max-w-7xl px-8">
+      <div className="absolute left-1/2 top-20 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-[160px]" />
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="grid items-center gap-20 lg:grid-cols-2">
 
@@ -21,27 +23,34 @@ export default function Hero() {
 
           <div>
 
-            <span className="inline-flex rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-2 text-sm font-medium text-indigo-300">
-              AI Powered Enterprise Asset Management
+            <span className="inline-flex items-center rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-2 text-sm font-medium text-indigo-300">
+              AI Powered Enterprise Platform
             </span>
 
-            <h1 className="mt-8 text-5xl font-extrabold leading-tight tracking-tight text-white lg:text-6xl">
-              Manage Assets
+            <h1 className="mt-8 text-5xl font-black leading-tight tracking-tight text-white lg:text-6xl">
+
+              Smarter Asset
               <br />
+
               <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-500 bg-clip-text text-transparent">
-                Smarter with AI
+                Management
               </span>
+
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-400">
-              AssetIQ AI helps organizations monitor enterprise assets,
-              generate QR codes, predict maintenance, automate workflows,
-              and gain intelligent insights from one secure platform.
+            <p className="mt-7 max-w-xl text-base leading-8 text-zinc-400">
+
+              Manage enterprise assets with intelligent QR tracking,
+              predictive maintenance and AI-powered insights from a
+              single modern platform.
+
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            {/* Buttons */}
 
-              <button className="flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 font-medium text-white transition hover:bg-indigo-500">
+            <div className="mt-10 flex flex-wrap gap-4">
+
+              <button className="flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-500">
 
                 Explore Dashboard
 
@@ -49,7 +58,7 @@ export default function Hero() {
 
               </button>
 
-              <button className="flex items-center gap-2 rounded-xl border border-zinc-700 px-6 py-3 font-medium text-white transition hover:border-indigo-500">
+              <button className="flex items-center gap-2 rounded-xl border border-zinc-700 px-6 py-3 text-sm font-medium text-white transition hover:border-indigo-500">
 
                 <PlayCircle size={18} />
 
@@ -59,46 +68,36 @@ export default function Hero() {
 
             </div>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            {/* Stats */}
 
-              <div className="flex items-center gap-3 rounded-2xl border border-zinc-800 bg-zinc-900 px-5 py-4">
+            <div className="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-4">
 
-                <div className="rounded-lg bg-emerald-500/10 p-2">
-                  <ShieldCheck size={18} className="text-emerald-400" />
-                </div>
-
-                <div>
-
-                  <p className="font-semibold text-white">
-                    Secure QR Tracking
-                  </p>
-
-                  <p className="text-sm text-zinc-500">
-                    End-to-end asset security
-                  </p>
-
-                </div>
-
+              <div>
+                <h3 className="text-3xl font-bold text-white">10K+</h3>
+                <p className="mt-2 text-sm text-zinc-500">
+                  Assets
+                </p>
               </div>
 
-              <div className="flex items-center gap-3 rounded-2xl border border-zinc-800 bg-zinc-900 px-5 py-4">
+              <div>
+                <h3 className="text-3xl font-bold text-white">98%</h3>
+                <p className="mt-2 text-sm text-zinc-500">
+                  AI Accuracy
+                </p>
+              </div>
 
-                <div className="rounded-lg bg-indigo-500/10 p-2">
-                  <Sparkles size={18} className="text-indigo-400" />
-                </div>
+              <div>
+                <h3 className="text-3xl font-bold text-white">24/7</h3>
+                <p className="mt-2 text-sm text-zinc-500">
+                  Monitoring
+                </p>
+              </div>
 
-                <div>
-
-                  <p className="font-semibold text-white">
-                    AI Predictions
-                  </p>
-
-                  <p className="text-sm text-zinc-500">
-                    Prevent failures before they happen
-                  </p>
-
-                </div>
-
+              <div>
+                <h3 className="text-3xl font-bold text-white">250+</h3>
+                <p className="mt-2 text-sm text-zinc-500">
+                  Organizations
+                </p>
               </div>
 
             </div>
@@ -107,33 +106,115 @@ export default function Hero() {
 
           {/* RIGHT */}
 
-          <div>
+          <div className="relative flex items-center justify-center">
 
-            <div className="rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-8 shadow-2xl">
+            <div className="grid w-full max-w-md gap-6">
 
-              <h2 className="text-3xl font-bold text-white leading-tight">
-                Ready to Modernize Your Asset Management?
-              </h2>
+              {/* Card 1 */}
 
-              <p className="mt-5 text-base leading-7 text-zinc-400">
-                Join organizations using AI to monitor assets,
-                predict maintenance and improve operational
-                efficiency.
-              </p>
+              <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-7 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
 
-              <button className="mt-7 flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 font-medium text-white transition hover:bg-indigo-500">
+                <div className="flex items-center justify-between">
 
-                Get Started
+                  <div>
 
-                <ArrowRight size={18} />
+                    <p className="text-sm text-zinc-500">
+                      Assets Managed
+                    </p>
 
-              </button>
+                    <h3 className="mt-2 text-4xl font-bold text-white">
+                      10,248
+                    </h3>
 
-              <img
-                src={dashboardImg}
-                alt="Dashboard Preview"
-                className="mt-10 w-full rounded-2xl border border-zinc-800 shadow-xl"
-              />
+                  </div>
+
+                  <div className="rounded-2xl bg-indigo-600/15 p-4">
+
+                    <QrCode
+                      className="text-indigo-400"
+                      size={26}
+                    />
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              {/* Card 2 */}
+
+              <div className="ml-12 rounded-3xl border border-zinc-800 bg-zinc-900/70 p-7 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
+
+                <div className="flex items-center justify-between">
+
+                  <div>
+
+                    <p className="text-sm text-zinc-500">
+                      AI Health Score
+                    </p>
+
+                    <h3 className="mt-2 text-4xl font-bold text-white">
+                      98%
+                    </h3>
+
+                  </div>
+
+                  <div className="rounded-2xl bg-emerald-600/15 p-4">
+
+                    <Activity
+                      className="text-emerald-400"
+                      size={26}
+                    />
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              {/* Card 3 */}
+
+              <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-7 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
+
+                <div className="flex items-center justify-between">
+
+                  <div>
+
+                    <p className="text-sm text-zinc-500">
+                      AI Monitoring
+                    </p>
+
+                    <h3 className="mt-2 text-2xl font-bold text-white">
+                      Active
+                    </h3>
+
+                    <div className="mt-4 flex items-center gap-2">
+
+                      <ShieldCheck
+                        size={16}
+                        className="text-emerald-400"
+                      />
+
+                      <span className="text-sm text-zinc-400">
+                        Secure & Live
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  <div className="rounded-2xl bg-violet-600/15 p-4">
+
+                    <Sparkles
+                      className="text-violet-400"
+                      size={26}
+                    />
+
+                  </div>
+
+                </div>
+
+              </div>
 
             </div>
 
@@ -144,5 +225,5 @@ export default function Hero() {
       </div>
 
     </section>
-  );
+      );
 }

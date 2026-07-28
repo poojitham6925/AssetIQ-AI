@@ -1,110 +1,42 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function CTA() {
   return (
-    <section className="bg-zinc-950 py-28">
+    <section className="bg-zinc-950 py-32">
 
-      <div className="mx-auto max-w-6xl px-8">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
 
-        <div className="overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900 via-zinc-900 to-indigo-950/30 shadow-2xl">
+        <div className="relative overflow-hidden rounded-[32px] border border-zinc-800 bg-gradient-to-br from-zinc-900 via-zinc-900 to-indigo-950/40 px-10 py-20 text-center">
 
-          <div className="grid items-center gap-12 p-10 lg:grid-cols-2 lg:p-14">
+          {/* Background Glow */}
 
-            {/* Left */}
+          <div className="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-indigo-600/20 blur-[120px]" />
 
-            <div>
+          <div className="relative">
 
-              <div className="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-4 py-2 text-sm font-medium text-indigo-300">
+            <span className="inline-flex rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-2 text-sm font-medium text-indigo-300">
+              Get Started
+            </span>
 
-                <Sparkles size={16} />
+            <h2 className="mx-auto mt-8 max-w-3xl text-4xl font-bold leading-tight text-white lg:text-5xl">
+              Ready to Transform
+              <br />
+              Your Asset Management?
+            </h2>
 
-                AI Powered Platform
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
+              Simplify asset tracking, automate monitoring, and unlock
+              AI-powered insights from one intelligent platform.
+            </p>
 
-              </div>
-
-              <h2 className="mt-6 text-4xl font-bold leading-tight text-white">
-
-                Ready to Modernize
-                <br />
-                Asset Management?
-
-              </h2>
-
-              <p className="mt-5 max-w-lg text-base leading-7 text-zinc-400">
-
-                Track assets, automate maintenance,
-                generate QR codes and gain intelligent
-                insights—all from one secure platform.
-
-              </p>
-
-              <button className="mt-8 flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 font-medium text-white transition hover:bg-indigo-500">
-
-                Get Started
-
-                <ArrowRight size={18} />
-
-              </button>
-
-            </div>
-
-            {/* Right */}
-
-            <div>
-
-              <div className="grid grid-cols-2 gap-4">
-
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
-
-                  <p className="text-sm text-zinc-500">
-                    Assets
-                  </p>
-
-                  <h3 className="mt-2 text-3xl font-bold text-white">
-                    10,248
-                  </h3>
-
-                </div>
-
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
-
-                  <p className="text-sm text-zinc-500">
-                    Health
-                  </p>
-
-                  <h3 className="mt-2 text-3xl font-bold text-emerald-400">
-                    97%
-                  </h3>
-
-                </div>
-
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
-
-                  <p className="text-sm text-zinc-500">
-                    Alerts
-                  </p>
-
-                  <h3 className="mt-2 text-3xl font-bold text-amber-400">
-                    15
-                  </h3>
-
-                </div>
-
-                <div className="rounded-2xl border border-zinc-800 bg-indigo-600 p-5">
-
-                  <p className="text-sm text-indigo-100">
-                    AI Status
-                  </p>
-
-                  <h3 className="mt-2 text-xl font-semibold text-white">
-                    All Systems Active
-                  </h3>
-
-                </div>
-
-              </div>
-
-            </div>
+            <Link
+              to="/dashboard"
+              className="mt-10 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-500"
+            >
+              Explore Dashboard
+              <ArrowRight size={20} />
+            </Link>
 
           </div>
 
