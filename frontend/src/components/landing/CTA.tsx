@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function CTA() {
   return (
-    <section className="bg-zinc-950 py-32">
+    <section className="bg-zinc-950 py-36">
 
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="relative overflow-hidden rounded-[32px] border border-zinc-800 bg-gradient-to-br from-zinc-900 via-zinc-900 to-indigo-950/40 px-10 py-20 text-center">
 

@@ -9,7 +9,7 @@ import {
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-zinc-950 py-32">
+   <section className="relative overflow-hidden bg-zinc-950 py-32">
 
       {/* Background Glow */}
 
@@ -27,7 +27,7 @@ export default function Hero() {
               AI Powered Enterprise Platform
             </span>
 
-            <h1 className="mt-8 text-5xl font-black leading-tight tracking-tight text-white lg:text-6xl">
+            <h1 className="mt-12 text-5xl font-black leading-[1.15] tracking-tight text-white lg:text-6xl">
 
               Smarter Asset
               <br />
@@ -108,11 +108,11 @@ export default function Hero() {
 
           <div className="relative flex items-center justify-center">
 
-            <div className="grid w-full max-w-md gap-6">
+            <div className="grid w-full max-w-md gap-8">
 
               {/* Card 1 */}
 
-              <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-7 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
+              <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-8 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
 
                 <div className="flex items-center justify-between">
 
@@ -143,7 +143,7 @@ export default function Hero() {
 
               {/* Card 2 */}
 
-              <div className="ml-12 rounded-3xl border border-zinc-800 bg-zinc-900/70 p-7 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
+              <div className="ml-12 rounded-3xl border border-zinc-800 bg-zinc-900/70 p-8 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
 
                 <div className="flex items-center justify-between">
 
@@ -174,7 +174,7 @@ export default function Hero() {
 
               {/* Card 3 */}
 
-              <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-7 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
+              <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-8 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
 
                 <div className="flex items-center justify-between">
 

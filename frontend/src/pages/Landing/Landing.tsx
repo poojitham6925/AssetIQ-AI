@@ -12,7 +12,7 @@ export default function Landing() {
     <div className="min-h-screen bg-[#09090b] text-white">
       <Navbar />
 
-      <main className="pt-20">
+      <main className="pt-28">
         <Hero />
         <Stats />
         <HowItWorks />

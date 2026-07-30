@@ -35,7 +35,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="bg-zinc-950 py-32">
+    <section className="bg-zinc-950 py-36">
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 

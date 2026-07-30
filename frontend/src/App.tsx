@@ -1,7 +1,5 @@
-import Landing from "./pages/Landing/Landing";
+import Dashboard from "./pages/Dashboard";
 
-function App() {
-  return <Landing />;
+export default function App() {
+  return <Dashboard />;
 }
-
-export default App;
