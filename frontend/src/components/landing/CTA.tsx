@@ -1,49 +1,25 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import Container from "../common/Container";
 
 export default function CTA() {
   return (
-    <section className="bg-zinc-950 py-36">
-
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-        <div className="relative overflow-hidden rounded-[32px] border border-zinc-800 bg-gradient-to-br from-zinc-900 via-zinc-900 to-indigo-950/40 px-10 py-20 text-center">
-
-          {/* Background Glow */}
-
-          <div className="absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-indigo-600/20 blur-[120px]" />
-
-          <div className="relative">
-
-            <span className="inline-flex rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-2 text-sm font-medium text-indigo-300">
-              Get Started
-            </span>
-
-            <h2 className="mx-auto mt-8 max-w-3xl text-4xl font-bold leading-tight text-white lg:text-5xl">
-              Ready to Transform
-              <br />
-              Your Asset Management?
-            </h2>
-
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-              Simplify asset tracking, automate monitoring, and unlock
-              AI-powered insights from one intelligent platform.
+    <section className="bg-canvas pb-20 sm:pb-28">
+      <Container>
+        <div className="relative overflow-hidden rounded-[2rem] bg-[#242052] px-6 py-14 text-white sm:px-12 sm:py-16">
+          <div aria-hidden="true" className="absolute -right-12 -top-32 h-80 w-80 rounded-full bg-[#9689ff]/25 blur-3xl" />
+          <div className="relative mx-auto max-w-3xl text-center">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#c3bdff]">Start with a clearer picture</span>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">Explore the AssetIQ experience.</h2>
+            <p className="mx-auto mt-4 max-w-xl leading-7 text-white/75">
+              Sign-up and workspace services are not connected in this frontend preview. Explore the product screens or return when account services are available.
             </p>
-
-            <Link
-              to="/dashboard"
-              className="mt-10 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-500"
-            >
-              Explore Dashboard
-              <ArrowRight size={20} />
+            <Link to="/dashboard" className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-xl bg-white px-5 font-semibold text-[#242052] transition hover:bg-white/90">
+              View product preview <ArrowRight size={17} />
             </Link>
-
           </div>
-
         </div>
-
-      </div>
-
+      </Container>
     </section>
   );
 }

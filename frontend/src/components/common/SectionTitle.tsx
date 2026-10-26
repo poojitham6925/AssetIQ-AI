@@ -10,19 +10,19 @@ export default function SectionTitle({
   description,
 }: Props) {
   return (
-    <div className="mx-auto mb-16 max-w-3xl text-center">
+    <div className="mx-auto mb-12 max-w-3xl text-center">
 
       {badge && (
-        <span className="rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-2 text-sm text-indigo-300">
+        <span className="inline-flex rounded-full border border-accent/25 bg-accent/5 px-4 py-2 text-sm font-semibold text-accent">
           {badge}
         </span>
       )}
 
-      <h2 className="mt-5 text-4xl font-bold tracking-tight text-white">
+      <h2 className="mt-5 text-3xl font-bold tracking-tight text-copy sm:text-4xl">
         {title}
       </h2>
 
-      <p className="mt-4 text-lg leading-7 text-zinc-400">
+      <p className="mt-4 text-base leading-7 text-muted sm:text-lg">
         {description}
       </p>
 

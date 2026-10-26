@@ -1,139 +1,56 @@
 import {
+  BarChart3,
+  Boxes,
+  BrainCircuit,
   Cpu,
   LayoutDashboard,
-  Package,
-  BarChart3,
-  BrainCircuit,
-  Settings,
-  ChevronRight,
+  Settings2,
 } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
 
-import { NavLink } from "react-router-dom";
+const menus = [
+  { icon: LayoutDashboard, title: "Overview", link: "/dashboard" },
+  { icon: Boxes, title: "Assets", link: "/assets" },
+  { icon: BarChart3, title: "Analytics", link: "/analytics" },
+  { icon: BrainCircuit, title: "Insights", link: "/ai" },
+  { icon: Settings2, title: "Settings", link: "/settings" },
+];
 
-export default function Sidebar() {
-  const menus = [
-    {
-      icon: LayoutDashboard,
-      title: "Dashboard",
-      link: "/dashboard",
-    },
-    {
-      icon: Package,
-      title: "Assets",
-      link: "/assets",
-    },
-    {
-      icon: BarChart3,
-      title: "Analytics",
-      link: "/analytics",
-    },
-    {
-      icon: BrainCircuit,
-      title: "AI Insights",
-      link: "/ai",
-    },
-    {
-      icon: Settings,
-      title: "Settings",
-      link: "/settings",
-    },
-  ];
-
+export default function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <aside className="flex h-full w-72 flex-col border-r border-zinc-800 bg-zinc-950">
-
-      {/* Logo */}
-
-      <div className="border-b border-zinc-800 px-8 py-8">
-
-        <div className="flex items-center gap-4">
-
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-600">
-            <Cpu size={22} className="text-white" />
-          </div>
-
-          <div>
-
-            <h1 className="text-2xl font-bold text-white">
-              AssetIQ AI
-            </h1>
-
-            <p className="text-sm text-zinc-500">
-              Enterprise Asset Platform
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* Navigation */}
-
-      <nav className="flex-1 space-y-3 overflow-y-auto px-5 py-8">
-
-        {menus.map((item) => {
-          const Icon = item.icon;
-
-          return (
-            <NavLink
-              key={item.title}
-              to={item.link}
-              className={({ isActive }) =>
-                `group flex items-center justify-between rounded-2xl border px-5 py-4 transition-all duration-300 hover:translate-x-1 ${
-                  isActive
-                    ? "border-indigo-500/20 bg-indigo-500/10 text-indigo-300"
-                    : "border-transparent text-zinc-400 hover:bg-zinc-800 hover:text-white"
-                }`
-              }
-            >
-              <div className="flex items-center gap-4">
-
-                <Icon size={20} />
-
-                <span className="font-medium">
-                  {item.title}
-                </span>
-
-              </div>
-
-              <ChevronRight
-                size={16}
-                className="opacity-0 transition group-hover:opacity-100"
-              />
-
-            </NavLink>
-          );
-        })}
-
+    <aside className="flex h-full min-h-screen flex-col border-r border-border bg-surface px-4 pb-5 pt-5">
+      <Link to="/" className="flex items-center gap-3 rounded-xl px-2 py-2" aria-label="AssetIQ home">
+        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-white"><Cpu size={19} /></span>
+        <span>
+          <span className="block font-bold tracking-tight text-copy">AssetIQ</span>
+          <span className="block text-[10px] font-semibold tracking-[0.14em] text-muted">ASSET OPERATIONS</span>
+        </span>
+      </Link>
+      <div className="mt-9 px-3 text-[10px] font-bold uppercase tracking-[0.18em] text-muted">Workspace preview</div>
+      <nav aria-label="Workspace navigation" className="mt-3 flex-1 space-y-1">
+        {menus.map(({ icon: Icon, title, link }) => (
+          <NavLink
+            key={link}
+            to={link}
+            onClick={onNavigate}
+            className={({ isActive }) =>
+              `flex min-h-11 items-center gap-3 rounded-xl px-3 text-sm font-medium transition ${
+                isActive
+                  ? "bg-accent/8 text-accent"
+                  : "text-muted hover:bg-surface-raised hover:text-copy"
+              }`
+            }
+          >
+            <Icon size={18} aria-hidden="true" />
+            {title}
+          </NavLink>
+        ))}
       </nav>
-
-      {/* User Card */}
-
-      <div className="border-t border-zinc-800 p-6">
-
-        <div className="flex items-center gap-4 rounded-2xl bg-zinc-900 p-4">
-
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600 font-bold text-white">
-            GU
-          </div>
-
-          <div>
-
-            <h3 className="font-semibold text-white">
-              Guest User
-            </h3>
-
-            <p className="text-sm text-zinc-500">
-              Not Signed In
-            </p>
-
-          </div>
-
-        </div>
-
+      <div className="rounded-2xl border border-border bg-surface-raised p-4">
+        <p className="text-xs font-semibold text-copy">Preview mode</p>
+        <p className="mt-1 text-xs leading-5 text-muted">No signed-in account or live workspace is connected.</p>
       </div>
-
+      <p className="px-3 pt-4 text-[11px] text-muted">AssetIQ · Interface preview</p>
     </aside>
   );
 }

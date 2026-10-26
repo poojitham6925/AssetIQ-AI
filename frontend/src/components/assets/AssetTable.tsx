@@ -1,177 +1,70 @@
-import { QrCode, Eye, Pencil } from "lucide-react";
+import { ArrowUpRight, Eye } from "lucide-react";
+import type { DemoAsset } from "../../fixtures/demoAssets";
 
 interface AssetTableProps {
-  onView: () => void;
+  assets: DemoAsset[];
+  onView: (asset: DemoAsset) => void;
 }
 
-const assets = [
-  {
-    name: "Laptop-001",
-    department: "IT",
-    status: "Active",
-    health: "Healthy",
-  },
-  {
-    name: "Printer-003",
-    department: "HR",
-    status: "Service",
-    health: "Pending",
-  },
-  {
-    name: "Server-008",
-    department: "Admin",
-    status: "Active",
-    health: "Healthy",
-  },
-  {
-    name: "Camera-011",
-    department: "Security",
-    status: "Active",
-    health: "Healthy",
-  },
-];
+const statusStyles: Record<DemoAsset["status"], string> = {
+  "In service": "bg-positive/10 text-positive",
+  "Under maintenance": "bg-warning/10 text-warning",
+  "Out of service": "bg-danger/10 text-danger",
+  Retired: "bg-surface-raised text-muted",
+};
 
-export default function AssetTable({ onView }: AssetTableProps) {
-  return (
-    <div className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900 shadow-xl">
-
-      {/* Header */}
-
-      <div className="flex items-center justify-between border-b border-zinc-800 px-6 py-5">
-
-        <div>
-          <h2 className="text-xl font-bold text-white">
-            Asset Inventory
-          </h2>
-
-          <p className="mt-1 text-sm text-zinc-400">
-            Monitor and manage enterprise assets
-          </p>
-        </div>
-
-        <button className="rounded-xl bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500">
-          + Add Asset
-        </button>
-
+export default function AssetTable({ assets, onView }: AssetTableProps) {
+  if (assets.length === 0) {
+    return (
+      <div className="rounded-2xl border border-border bg-surface px-6 py-16 text-center">
+        <h2 className="font-semibold text-copy">No sample assets match</h2>
+        <p className="mt-2 text-sm text-muted">Change or clear the filters to see the illustrative records.</p>
       </div>
+    );
+  }
 
-      {/* Table */}
-
-      <table className="w-full">
-
-        <thead className="bg-zinc-800/60">
-
-          <tr className="text-left text-sm uppercase tracking-wide text-zinc-300">
-
-            <th className="px-6 py-4">Asset</th>
-            <th className="px-4 py-4">Department</th>
-            <th className="px-4 py-4">Status</th>
-            <th className="px-4 py-4">Health</th>
-            <th className="px-4 py-4 text-center">Actions</th>
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          {assets.map((asset) => (
-
-            <tr
-              key={asset.name}
-              className="border-t border-zinc-800 transition hover:bg-zinc-800/50"
-            >
-
-              {/* Asset */}
-
-              <td className="px-6 py-5">
-
-                <div>
-
-                  <p className="font-semibold text-white">
-                    {asset.name}
-                  </p>
-
-                  <p className="text-sm text-zinc-500">
-                    Enterprise Asset
-                  </p>
-
-                </div>
-
-              </td>
-
-              {/* Department */}
-
-              <td className="px-4 py-5 text-zinc-300">
-                {asset.department}
-              </td>
-
-              {/* Status */}
-
-              <td className="px-4 py-5">
-
-                <span className="rounded-full bg-indigo-600/20 px-4 py-1 text-sm font-medium text-indigo-400">
-                  {asset.status}
-                </span>
-
-              </td>
-
-              {/* Health */}
-
-              <td className="px-4 py-5">
-
-                <span
-                  className={`rounded-full px-4 py-1 text-sm font-medium ${
-                    asset.health === "Healthy"
-                      ? "bg-emerald-600/20 text-emerald-400"
-                      : "bg-yellow-600/20 text-yellow-400"
-                  }`}
-                >
-                  {asset.health}
-                </span>
-
-              </td>
-
-              {/* Actions */}
-
-              <td className="px-4 py-5">
-
-                <div className="flex justify-center gap-3">
-
-                  <button
-                    onClick={onView}
-                    className="rounded-lg bg-zinc-800 p-2 transition hover:bg-indigo-600"
-                    title="View Asset"
-                  >
-                    <Eye size={18} className="text-white" />
-                  </button>
-
-                  <button
-                    className="rounded-lg bg-zinc-800 p-2 transition hover:bg-emerald-600"
-                    title="Edit Asset"
-                  >
-                    <Pencil size={18} className="text-white" />
-                  </button>
-
-                  <button
-                    className="rounded-lg bg-zinc-800 p-2 transition hover:bg-purple-600"
-                    title="View QR Code"
-                  >
-                    <QrCode size={18} className="text-white" />
-                  </button>
-
-                </div>
-
-              </td>
-
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+      <div className="flex items-center justify-between border-b border-border px-5 py-4 sm:px-6">
+        <div>
+          <h2 className="font-semibold text-copy">Asset register</h2>
+          <p className="mt-1 text-xs text-muted">{assets.length} sample records</p>
+        </div>
+        <span className="rounded-full bg-accent/5 px-3 py-1 text-xs font-semibold text-accent">Preview data</span>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[680px] text-left">
+          <thead className="bg-surface-raised text-xs uppercase tracking-wide text-muted">
+            <tr>
+              <th scope="col" className="px-5 py-3 font-semibold sm:px-6">Asset</th>
+              <th scope="col" className="px-4 py-3 font-semibold">Category</th>
+              <th scope="col" className="px-4 py-3 font-semibold">Location</th>
+              <th scope="col" className="px-4 py-3 font-semibold">Status</th>
+              <th scope="col" className="px-5 py-3 text-right font-semibold sm:px-6">Details</th>
             </tr>
-
-          ))}
-
-        </tbody>
-
-      </table>
-
+          </thead>
+          <tbody className="divide-y divide-border">
+            {assets.map((asset) => (
+              <tr key={asset.id} className="transition hover:bg-surface-raised">
+                <td className="px-5 py-4 sm:px-6">
+                  <p className="font-semibold text-copy">{asset.name}</p>
+                  <p className="mt-1 font-mono text-xs text-muted">{asset.code}</p>
+                </td>
+                <td className="px-4 py-4 text-sm text-copy">{asset.category}</td>
+                <td className="px-4 py-4 text-sm text-muted">{asset.location ?? "Not specified"}</td>
+                <td className="px-4 py-4">
+                  <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${statusStyles[asset.status]}`}>{asset.status}</span>
+                </td>
+                <td className="px-5 py-4 text-right sm:px-6">
+                  <button type="button" onClick={() => onView(asset)} aria-label={`View sample asset ${asset.name}`} className="inline-flex min-h-10 items-center gap-2 rounded-lg px-3 text-sm font-semibold text-accent hover:bg-accent/5">
+                    <Eye size={16} /> View <ArrowUpRight size={14} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

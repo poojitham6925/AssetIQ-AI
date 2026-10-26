@@ -1,72 +1,31 @@
-import {
-  Boxes,
-  ShieldCheck,
-  Activity,
-  Clock3,
-} from "lucide-react";
+import { Boxes, CalendarClock, Layers3, ScanLine } from "lucide-react";
+import Container from "../common/Container";
 
-const stats = [
-  {
-    icon: Boxes,
-    value: "10,248",
-    label: "Managed Assets",
-    color: "bg-indigo-500/10 text-indigo-400",
-  },
-  {
-    icon: ShieldCheck,
-    value: "98%",
-    label: "Asset Health",
-    color: "bg-emerald-500/10 text-emerald-400",
-  },
-  {
-    icon: Activity,
-    value: "24/7",
-    label: "AI Monitoring",
-    color: "bg-violet-500/10 text-violet-400",
-  },
-  {
-    icon: Clock3,
-    value: "< 2 min",
-    label: "Average Scan Time",
-    color: "bg-amber-500/10 text-amber-400",
-  },
+const capabilities = [
+  { icon: Boxes, title: "Asset inventory", detail: "A structured home for the things your team manages." },
+  { icon: CalendarClock, title: "Maintenance context", detail: "Schedules and service history alongside each asset." },
+  { icon: ScanLine, title: "QR-ready workflows", detail: "Designed around secure, workspace-aware asset lookup." },
+  { icon: Layers3, title: "Workspace model", detail: "Personal workspaces with room for organization teams." },
 ];
 
 export default function Stats() {
   return (
-    <section className="bg-zinc-950 py-36">
-
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
-        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-4">
-
-          {stats.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={item.label}
-                className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-8 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500 hover:shadow-[0_20px_60px_rgba(99,102,241,0.15)]"
-              >
-                <div
-                  className={`flex h-14 w-14 items-center justify-center rounded-2xl ${item.color}`}
-                >
-                  <Icon size={24} />
-                </div>
-
-                <h3 className="mt-8 text-4xl font-bold text-white">
-                  {item.value}
-                </h3>
-
-                <p className="mt-3 text-base text-zinc-400">
-                  {item.label}
-                </p>
+    <section className="border-y border-border bg-surface py-12 sm:py-16">
+      <Container>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {capabilities.map(({ icon: Icon, title, detail }) => (
+            <div key={title} className="flex gap-4 rounded-2xl p-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/8 text-accent">
+                <Icon size={20} />
+              </span>
+              <div>
+                <h2 className="text-sm font-semibold text-copy">{title}</h2>
+                <p className="mt-1 text-sm leading-6 text-muted">{detail}</p>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
-
-      </div>
+      </Container>
     </section>
   );
 }

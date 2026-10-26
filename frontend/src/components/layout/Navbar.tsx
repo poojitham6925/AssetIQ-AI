@@ -1,83 +1,93 @@
-import { Cpu, Menu } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Cpu, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import ThemeToggle from "../ui/ThemeToggle";
 
 const navItems = [
-  { name: "Home", path: "/" },
-  { name: "Features", path: "/features" },
+  { name: "Product", path: "/features" },
   { name: "Dashboard", path: "/dashboard" },
   { name: "Analytics", path: "/analytics" },
-  { name: "AI", path: "/ai" },
+  { name: "Insights", path: "/ai" },
   { name: "Contact", path: "/contact" },
 ];
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-zinc-950/75 backdrop-blur-2xl">
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 lg:px-10">
-
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3">
-
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-600 shadow-lg shadow-indigo-500/20">
-
-            <Cpu size={20} className="text-white" />
-
-          </div>
-
-          <div>
-
-            <h1 className="text-lg font-bold tracking-tight text-white">
-              AssetIQ AI
-            </h1>
-
-            <p className="text-xs text-zinc-500">
-              Enterprise Asset Platform
-            </p>
-
-          </div>
-
+    <header className="sticky top-0 z-40 border-b border-border/80 bg-canvas/90 backdrop-blur-xl">
+      <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-7 lg:px-10">
+        <Link to="/" className="flex items-center gap-3" aria-label="AssetIQ AI home">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-white shadow-lg shadow-accent/20">
+            <Cpu size={20} aria-hidden="true" />
+          </span>
+          <span>
+            <span className="block text-base font-bold tracking-tight text-copy">AssetIQ</span>
+            <span className="block text-[11px] font-medium tracking-[0.14em] text-muted">ASSET OPERATIONS</span>
+          </span>
         </Link>
 
-        {/* Navigation */}
-        <nav className="hidden items-center gap-8 lg:flex">
-
+        <nav aria-label="Main navigation" className="hidden items-center gap-7 lg:flex">
           {navItems.map((item) => (
-            <Link
-              key={item.name}
+            <NavLink
+              key={item.path}
               to={item.path}
-              className="relative text-sm font-medium text-zinc-400 transition duration-300 hover:text-white after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-500 after:transition-all after:duration-300 hover:after:w-full"
+              className={({ isActive }) =>
+                `text-sm font-medium transition hover:text-accent ${isActive ? "text-accent" : "text-muted"}`
+              }
             >
               {item.name}
-            </Link>
+            </NavLink>
           ))}
-
         </nav>
 
-        {/* Right */}
         <div className="hidden items-center gap-4 lg:flex">
-
-          <Link
-            to="/login"
-            className="text-sm font-medium text-zinc-400 transition hover:text-white"
-          >
-            Login
+          <ThemeToggle compact />
+          <Link className="text-sm font-semibold text-muted transition hover:text-copy" to="/login">
+            Sign in
           </Link>
-
-          <Link
-            to="/register"
-            className="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:-translate-y-0.5 hover:bg-indigo-500"
-          >
-            Get Started
+          <Link className="inline-flex min-h-10 items-center rounded-xl bg-accent px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-accent-hover" to="/register">
+            Get started
           </Link>
-
         </div>
 
-        {/* Mobile */}
-        <button className="rounded-xl border border-zinc-800 p-2 text-zinc-300 transition hover:bg-zinc-900 lg:hidden">
-          <Menu size={20} />
+        <button
+          type="button"
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border text-copy hover:bg-surface-raised lg:hidden"
+        >
+          {menuOpen ? <X size={19} /> : <Menu size={19} />}
         </button>
-
       </div>
+
+      {menuOpen && (
+        <nav id="mobile-navigation" aria-label="Mobile navigation" className="border-t border-border bg-surface px-5 py-5 lg:hidden">
+          <div className="mx-auto grid max-w-7xl gap-2">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  `rounded-xl px-3 py-3 text-sm font-medium ${isActive ? "bg-accent/10 text-accent" : "text-copy hover:bg-surface-raised"}`
+                }
+              >
+                {item.name}
+              </NavLink>
+            ))}
+            <div className="mt-3 flex items-center justify-between border-t border-border pt-4">
+              <ThemeToggle />
+              <div className="flex gap-3">
+                <Link to="/login" onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-2 text-sm font-semibold text-muted">Sign in</Link>
+                <Link to="/register" onClick={() => setMenuOpen(false)} className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white">Get started</Link>
+              </div>
+            </div>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

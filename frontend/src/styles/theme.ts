@@ -1,20 +1,26 @@
-export const theme = {
-  container: "max-w-7xl mx-auto px-6 lg:px-8",
+import { createContext, useContext } from "react";
 
-  section: "py-24",
+export type ThemePreference = "light" | "dark" | "system";
+export type ResolvedTheme = Exclude<ThemePreference, "system">;
 
-  card:
-    "rounded-3xl border border-zinc-800 bg-zinc-900/60 backdrop-blur-xl",
+export interface ThemeContextValue {
+  preference: ThemePreference;
+  resolvedTheme: ResolvedTheme;
+  setPreference: (preference: ThemePreference) => void;
+}
 
-  buttonPrimary:
-    "rounded-xl bg-indigo-600 hover:bg-indigo-500 transition px-6 py-3 font-semibold",
+export const ThemeContext = createContext<ThemeContextValue | null>(null);
+export const themeStorageKey = "assetiq-theme";
 
-  buttonSecondary:
-    "rounded-xl border border-zinc-700 hover:border-indigo-500 transition px-6 py-3",
+export function resolveTheme(preference: ThemePreference): ResolvedTheme {
+  if (preference !== "system") return preference;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
 
-  title:
-    "text-4xl md:text-5xl font-bold tracking-tight",
-
-  subtitle:
-    "text-base md:text-lg text-zinc-400 leading-7",
-};
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error("useTheme must be used inside ThemeProvider");
+  return context;
+}

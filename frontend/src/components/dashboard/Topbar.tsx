@@ -1,186 +1,70 @@
+import { ChevronDown, CircleUserRound } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import {
-  Search,
-  Bell,
-  CircleUserRound,
-  Sparkles,
-  ChevronDown,
-  User,
-  Settings,
-  LogIn,
-} from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import ThemeToggle from "../ui/ThemeToggle";
+
+const pageTitles: Record<string, string> = {
+  "/dashboard": "Overview",
+  "/assets": "Assets",
+  "/analytics": "Analytics",
+  "/ai": "Insights",
+  "/settings": "Settings",
+};
 
 export default function Topbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { pathname } = useLocation();
+  const pageTitle = pathname.startsWith("/assets/") ? "Asset details" : pageTitles[pathname] ?? "AssetIQ";
 
   useEffect(() => {
-    if (!isMenuOpen) return;
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node)
-      ) {
-        setIsMenuOpen(false);
+    if (!menuOpen) return;
+    const handlePointerDown = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
       }
     };
-
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsMenuOpen(false);
-      }
+      if (event.key === "Escape") setMenuOpen(false);
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
-
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isMenuOpen]);
+  }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 flex h-20 items-center justify-between border-b border-zinc-800 bg-zinc-950/95 px-8 backdrop-blur">
-
-      {/* Left */}
-
-      <div className="flex items-center gap-6">
-
-        <div>
-
-          <h1 className="text-2xl font-bold text-white">
-            Dashboard
-          </h1>
-
-          <p className="text-sm text-zinc-500">
-            Welcome back 👋
-          </p>
-
-        </div>
-
+    <header className="sticky top-0 z-30 flex min-h-[76px] items-center justify-between gap-3 border-b border-border bg-canvas/90 px-4 pl-16 backdrop-blur-xl sm:px-7 sm:pl-20 lg:px-10 lg:pl-10">
+      <div>
+        <p className="text-xs font-medium text-muted">Workspace preview</p>
+        <h1 className="mt-0.5 text-lg font-semibold tracking-tight text-copy">{pageTitle}</h1>
       </div>
-
-      {/* Center */}
-
-      <div className="relative hidden lg:block">
-
-        <Search
-          size={20}
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500"
-        />
-
-        <input
-          type="text"
-          placeholder="Search assets, departments..."
-          className="w-96 rounded-2xl border border-zinc-800 bg-zinc-900 py-3 pl-11 pr-4 text-white outline-none transition focus:border-indigo-500"
-        />
-
-      </div>
-
-      {/* Right */}
-
-      <div className="flex items-center gap-4">
-
-        {/* AI Button */}
-
-        <button className="hidden items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 lg:flex">
-
-          <Sparkles size={20} />
-
-          AI Assistant
-
-        </button>
-
-        {/* Notifications */}
-
-        <button className="relative rounded-xl bg-zinc-800 p-3 text-white transition hover:bg-indigo-600">
-
-          <Bell size={20} />
-
-          <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-rose-500" />
-
-        </button>
-
-        {/* User */}
-
-        <div ref={menuRef} className="relative">
-
+      <div className="flex items-center gap-2 sm:gap-4">
+        <ThemeToggle compact />
+        <div className="relative" ref={menuRef}>
           <button
-            onClick={() => setIsMenuOpen((open) => !open)}
-            className="flex items-center gap-3 rounded-2xl border border-zinc-800 bg-zinc-900 px-3 py-2 transition hover:border-indigo-500"
+            type="button"
+            aria-expanded={menuOpen}
+            aria-haspopup="menu"
+            aria-controls="user-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+            className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-border bg-surface px-2.5 text-copy hover:bg-surface-raised sm:px-3"
           >
-
-            <CircleUserRound
-              size={34}
-              className="text-indigo-400"
-            />
-
-            <div className="hidden text-left lg:block">
-
-              <p className="text-sm font-semibold text-white">
-                Guest User
-              </p>
-
-              <p className="text-xs text-zinc-500">
-                Not Signed In
-              </p>
-
-            </div>
-
-            <ChevronDown
-              size={16}
-              className={`hidden text-zinc-500 transition-transform duration-300 lg:block ${
-                isMenuOpen ? "rotate-180" : ""
-              }`}
-            />
-
+            <CircleUserRound size={19} className="text-accent" />
+            <span className="hidden text-sm font-medium sm:inline">Preview user</span>
+            <ChevronDown size={15} className="text-muted" />
           </button>
-
-          {/* Dropdown */}
-
-          {isMenuOpen && (
-            <div className="absolute right-0 top-full z-50 mt-3 w-64 rounded-2xl border border-zinc-800 bg-zinc-900 p-2 shadow-lg">
-
-              <div className="border-b border-zinc-800 px-3 py-3">
-
-                <p className="text-sm font-semibold text-white">
-                  Guest User
-                </p>
-
-                <p className="text-xs text-zinc-500">
-                  Not Signed In
-                </p>
-
-              </div>
-
-              <div className="mt-2 space-y-1">
-
-                <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-zinc-400 transition hover:bg-zinc-800 hover:text-white">
-                  <User size={16} />
-                  Profile
-                </button>
-
-                <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-zinc-400 transition hover:bg-zinc-800 hover:text-white">
-                  <Settings size={16} />
-                  Settings
-                </button>
-
-                <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-indigo-400 transition hover:bg-zinc-800 hover:text-indigo-300">
-                  <LogIn size={16} />
-                  Sign In
-                </button>
-
-              </div>
-
+          {menuOpen && (
+            <div id="user-menu" role="menu" className="absolute right-0 top-full mt-2 w-52 rounded-2xl border border-border bg-surface p-2 shadow-[var(--shadow)]">
+              <p className="px-3 py-2 text-xs text-muted">Not signed in</p>
+              <Link role="menuitem" to="/login" onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-2.5 text-sm font-medium text-copy hover:bg-surface-raised">Sign in (not connected)</Link>
+              <Link role="menuitem" to="/settings" onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-2.5 text-sm font-medium text-copy hover:bg-surface-raised">Settings preview</Link>
             </div>
           )}
-
         </div>
-
       </div>
-
     </header>
   );
 }

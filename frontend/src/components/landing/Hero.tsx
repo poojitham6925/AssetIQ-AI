@@ -1,229 +1,78 @@
-import {
-  ArrowRight,
-  PlayCircle,
-  ShieldCheck,
-  Sparkles,
-  Activity,
-  QrCode,
-} from "lucide-react";
+import { ArrowDown, ArrowRight, Boxes, ShieldCheck, Wrench } from "lucide-react";
+import { Link } from "react-router-dom";
+import Container from "../common/Container";
+
+const previewItems = [
+  { icon: Boxes, title: "A clearer asset picture", detail: "Bring inventory and operational context together." },
+  { icon: Wrench, title: "Maintenance, in context", detail: "Keep service schedules and history close to each asset." },
+  { icon: ShieldCheck, title: "Workspace-first access", detail: "Design for personal and organization workspaces." },
+];
 
 export default function Hero() {
   return (
-   <section className="relative overflow-hidden bg-zinc-950 py-32">
-
-      {/* Background Glow */}
-
-      <div className="absolute left-1/2 top-20 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-[160px]" />
-
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-
-        <div className="grid items-center gap-20 lg:grid-cols-2">
-
-          {/* LEFT */}
-
+    <section className="relative isolate overflow-hidden bg-canvas pb-20 pt-16 sm:pb-28 sm:pt-24 lg:pb-32 lg:pt-28">
+      <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-32 -z-10 h-[34rem] w-[34rem] rounded-full bg-accent/10 blur-3xl" />
+      <Container>
+        <div className="grid items-center gap-14 lg:grid-cols-[1.04fr_0.96fr] lg:gap-20">
           <div>
-
-            <span className="inline-flex items-center rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-2 text-sm font-medium text-indigo-300">
-              AI Powered Enterprise Platform
-            </span>
-
-            <h1 className="mt-12 text-5xl font-black leading-[1.15] tracking-tight text-white lg:text-6xl">
-
-              Smarter Asset
-              <br />
-
-              <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-500 bg-clip-text text-transparent">
-                Management
+            <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-3.5 py-2 text-xs font-semibold tracking-wide text-accent">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              ASSET OPERATIONS, MADE CLEAR
+            </div>
+            <h1 className="mt-7 max-w-2xl text-5xl font-semibold leading-[1.05] tracking-[-0.045em] text-copy sm:text-6xl lg:text-7xl">
+              Know what you own.{" "}
+              <span className="bg-gradient-to-r from-accent to-[#9a83db] bg-clip-text text-transparent">
+                Keep it working.
               </span>
-
             </h1>
-
-            <p className="mt-7 max-w-xl text-base leading-8 text-zinc-400">
-
-              Manage enterprise assets with intelligent QR tracking,
-              predictive maintenance and AI-powered insights from a
-              single modern platform.
-
+            <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
+              A focused workspace for organizing assets, tracking maintenance, and making day-to-day operations easier to understand.
             </p>
-
-            {/* Buttons */}
-
-            <div className="mt-10 flex flex-wrap gap-4">
-
-              <button className="flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-500">
-
-                Explore Dashboard
-
-                <ArrowRight size={18} />
-
-              </button>
-
-              <button className="flex items-center gap-2 rounded-xl border border-zinc-700 px-6 py-3 text-sm font-medium text-white transition hover:border-indigo-500">
-
-                <PlayCircle size={18} />
-
-                Learn More
-
-              </button>
-
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link to="/register" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-accent px-5 font-semibold text-white shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:bg-accent-hover">
+                Get started <ArrowRight size={17} />
+              </Link>
+              <a href="#product-preview" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-border bg-surface px-5 font-semibold text-copy transition hover:bg-surface-raised">
+                Explore the product <ArrowDown size={16} />
+              </a>
             </div>
-
-            {/* Stats */}
-
-            <div className="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-4">
-
-              <div>
-                <h3 className="text-3xl font-bold text-white">10K+</h3>
-                <p className="mt-2 text-sm text-zinc-500">
-                  Assets
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-bold text-white">98%</h3>
-                <p className="mt-2 text-sm text-zinc-500">
-                  AI Accuracy
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-bold text-white">24/7</h3>
-                <p className="mt-2 text-sm text-zinc-500">
-                  Monitoring
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-bold text-white">250+</h3>
-                <p className="mt-2 text-sm text-zinc-500">
-                  Organizations
-                </p>
-              </div>
-
-            </div>
-
+            <p className="mt-5 text-sm text-muted">A new platform in progress. No customer or performance statistics are claimed here.</p>
           </div>
 
-          {/* RIGHT */}
-
-          <div className="relative flex items-center justify-center">
-
-            <div className="grid w-full max-w-md gap-8">
-
-              {/* Card 1 */}
-
-              <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-8 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
-
-                <div className="flex items-center justify-between">
-
-                  <div>
-
-                    <p className="text-sm text-zinc-500">
-                      Assets Managed
-                    </p>
-
-                    <h3 className="mt-2 text-4xl font-bold text-white">
-                      10,248
-                    </h3>
-
-                  </div>
-
-                  <div className="rounded-2xl bg-indigo-600/15 p-4">
-
-                    <QrCode
-                      className="text-indigo-400"
-                      size={26}
-                    />
-
-                  </div>
-
+          <div id="product-preview" className="relative">
+            <div aria-hidden="true" className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-accent/15 via-transparent to-[#81b9d3]/15 blur-xl" />
+            <div className="overflow-hidden rounded-[1.7rem] border border-border bg-surface shadow-[var(--shadow)]">
+              <div className="flex items-center justify-between border-b border-border px-5 py-4 sm:px-7">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Product preview</p>
+                  <p className="mt-1 font-semibold text-copy">Your asset workspace</p>
                 </div>
-
+                <span className="rounded-full border border-accent/20 bg-accent/5 px-3 py-1 text-xs font-semibold text-accent">Illustrative</span>
               </div>
-
-              {/* Card 2 */}
-
-              <div className="ml-12 rounded-3xl border border-zinc-800 bg-zinc-900/70 p-8 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
-
-                <div className="flex items-center justify-between">
-
-                  <div>
-
-                    <p className="text-sm text-zinc-500">
-                      AI Health Score
-                    </p>
-
-                    <h3 className="mt-2 text-4xl font-bold text-white">
-                      98%
-                    </h3>
-
-                  </div>
-
-                  <div className="rounded-2xl bg-emerald-600/15 p-4">
-
-                    <Activity
-                      className="text-emerald-400"
-                      size={26}
-                    />
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              {/* Card 3 */}
-
-              <div className="rounded-3xl border border-zinc-800 bg-zinc-900/70 p-8 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500">
-
-                <div className="flex items-center justify-between">
-
-                  <div>
-
-                    <p className="text-sm text-zinc-500">
-                      AI Monitoring
-                    </p>
-
-                    <h3 className="mt-2 text-2xl font-bold text-white">
-                      Active
-                    </h3>
-
-                    <div className="mt-4 flex items-center gap-2">
-
-                      <ShieldCheck
-                        size={16}
-                        className="text-emerald-400"
-                      />
-
-                      <span className="text-sm text-zinc-400">
-                        Secure & Live
-                      </span>
-
+              <div className="space-y-3 p-4 sm:p-6">
+                {previewItems.map(({ icon: Icon, title, detail }, index) => (
+                  <div key={title} className="flex gap-4 rounded-2xl border border-border bg-surface-raised p-4 sm:p-5">
+                    <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${index === 1 ? "bg-[#e8a755]/15 text-[#ad6c16]" : "bg-accent/10 text-accent"}`}>
+                      <Icon size={20} />
+                    </span>
+                    <div>
+                      <h2 className="font-semibold text-copy">{title}</h2>
+                      <p className="mt-1 text-sm leading-6 text-muted">{detail}</p>
                     </div>
-
                   </div>
-
-                  <div className="rounded-2xl bg-violet-600/15 p-4">
-
-                    <Sparkles
-                      className="text-violet-400"
-                      size={26}
-                    />
-
-                  </div>
-
+                ))}
+                <div className="rounded-2xl border border-dashed border-border px-4 py-3 text-center text-xs text-muted">
+                  Illustrative interface only · no live account data
                 </div>
-
               </div>
-
             </div>
-
+            <div className="absolute -bottom-5 -left-3 hidden rounded-2xl border border-border bg-surface px-4 py-3 shadow-lg sm:block">
+              <p className="text-xs font-medium text-muted">Thoughtful by design</p>
+              <p className="mt-1 text-sm font-semibold text-copy">One workspace at a time</p>
+            </div>
           </div>
-
         </div>
-
-      </div>
-
+      </Container>
     </section>
-      );
+  );
 }
