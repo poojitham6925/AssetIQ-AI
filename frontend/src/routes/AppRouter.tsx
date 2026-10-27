@@ -11,6 +11,7 @@ import ContactPage from "../pages/Contact/ContactPage";
 
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
+import VerifyEmail from "../pages/Auth/VerifyEmail";
 import SettingsPage from "../pages/Settings/SettingsPage";
 import AssetDetailsPage from "../pages/Assets/AssetDetailsPage";
 import NotFoundPage from "../pages/NotFound/NotFoundPage";
@@ -30,6 +31,7 @@ export default function AppRouter() {
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
